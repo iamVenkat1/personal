@@ -2618,14 +2618,8 @@ margin-bottom: 0;
 .HG-ct-modal .HG-TY-right p{
 font-size: 24px;
 }
-
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: textfield;
-    margin: 0;
+.modal-dialog{
+  margin-left: 425px;
 }
 
-input[type="number"] {
-    -moz-appearance: textfield;
-}
+

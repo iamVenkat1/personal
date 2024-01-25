@@ -98,6 +98,10 @@ else{
 
 
  if( name!="" && email !="" && number !="" && company!="" && valida==false){
+  var modal = new bootstrap.Modal(document.getElementById('thankyoumodal'));
+
+  modal.show();
+
 setTimeout(() => {
 console.log("email-hit");
 var templateParams = {
@@ -118,7 +122,13 @@ emailjs.init("CMaDjBG9La3HRGv1V");
 emailjs.send('service_i0qa8hw', 'template_u10feul', templateParams)
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
+       messageement.value="";
+       subjectement.value="";
+       companyElement.value="";
+       numberElement.value ="";
+       emailElement.value ="";
+       nameElement.value="";
+      }, function(error) {
        console.log('FAILED...', error);
     });
   }, 2000);}
