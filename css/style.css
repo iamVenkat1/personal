@@ -999,7 +999,10 @@ a:focus {
     letter-spacing: 1px;
     margin-bottom: 10px;
 }
-
+.css{
+  width: 25px;
+  color: #FF6F61;
+}
 .contact .contact-info p i {
     width: 25px;
     color: #FF6F61;

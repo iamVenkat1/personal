@@ -2,8 +2,7 @@
 
 
     function downloadPDF() {
-debugger;
-        console.log("hit this function");
+        // console.log("hit this function");
       // Replace 'path/to/your/file.pdf' with the actual path to your PDF file
       var pdfPath = '../resume/resume/resume.pdf'
       // Create a link elementurl(../resume/resume.jpg)
@@ -27,7 +26,8 @@ debugger;
 
 function emailsent(){
   debugger;
-  
+  var Phoneregex1 = /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/g
+     var Phoneregex2 = /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/
     var nameElement = document.getElementById("name");
     var name = nameElement.value; 
     var emailElement = document.getElementById("email");
@@ -44,7 +44,7 @@ function emailsent(){
     var myElement = document.getElementById("error");
     myElement.textContent = "";
     myElement.style.display = "none";
-console.log(name + email +number+company)
+// console.log(name + email +number+company)
 
 if( name==""){
   myElement.textContent = "Enter your name";
@@ -57,10 +57,12 @@ else if(email=="")
 myElement.style.display = "block";
 
 }
+
 else if(number=="")
  {
   myElement.textContent = "Enter your phone number";
   myElement.style.display = "block";
+
 
 }
 else if(company=="")
@@ -77,6 +79,8 @@ else{
 var EmailRegx = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/
 const specialCharacterRegex1 = /[\\/:*?"<>]/;
 var valida=false;
+
+
  if(email!=""){
 
 if (!EmailRegx.test(email.trim())) {
@@ -90,20 +94,52 @@ else if (specialCharacterRegex1.test(email.trim())) {
   myElement.style.display = "block";
   valida=true;
 }
-else{
-  myElement.textContent ="";
-  myElement.style.display = "";
-}
+
+
  }
 
 
+
+
+  if ( number != "") {
+    // this.FormatphoneNumber = this.PhoneNumberp;
+    number= number.replace(/\s/g, "")
+    number= number.trim();
+    var respone = Phoneregex1.test(number);
+    var finalrespone;
+    if (respone == true) {
+      finalrespone = true;
+    }
+    else {
+      respone = Phoneregex2.test(number)
+      if (respone == true) {
+        finalrespone = true;
+      } else {
+        finalrespone = false;
+      }
+    }
+    if (finalrespone == false) {
+      myElement.textContent = "Enter valid phone number";
+      myElement.style.display = "block";
+      valida=true;
+
+
+    } else 
+    {
+     
+
+    }
+  
+}
+
  if( name!="" && email !="" && number !="" && company!="" && valida==false){
   var modal = new bootstrap.Modal(document.getElementById('thankyoumodal'));
-
+  myElement.textContent = "";
+  myElement.style.display = "none";
   modal.show();
 
 setTimeout(() => {
-console.log("email-hit");
+// console.log("email-hit");
 var templateParams = {
  from_name: 'Venkat Website',
  userfirstname: name,
@@ -121,7 +157,6 @@ var templateParams = {
 emailjs.init("CMaDjBG9La3HRGv1V");
 emailjs.send('service_i0qa8hw', 'template_u10feul', templateParams)
     .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
        messageement.value="";
        subjectement.value="";
        companyElement.value="";
@@ -129,7 +164,7 @@ emailjs.send('service_i0qa8hw', 'template_u10feul', templateParams)
        emailElement.value ="";
        nameElement.value="";
       }, function(error) {
-       console.log('FAILED...', error);
+      //  console.log('FAILED...', error);
     });
   }, 2000);}
 }
