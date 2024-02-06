@@ -1,5 +1,5 @@
 
-
+displayDuration();
 
     function downloadPDF() {
         // console.log("hit this function");
@@ -25,7 +25,6 @@
     }
 
 function emailsent(){
-  debugger;
   var Phoneregex1 = /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/g
      var Phoneregex2 = /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/
     var nameElement = document.getElementById("name");
@@ -167,4 +166,33 @@ emailjs.send('service_i0qa8hw', 'template_u10feul', templateParams)
       //  console.log('FAILED...', error);
     });
   }, 2000);}
+}
+
+
+function displayDuration() {
+  setTimeout(() => {
+  // Given join date: May 16, 2022
+const joinDate = new Date('2022-05-16');
+
+// Current date
+const currentDate = new Date();
+
+// Calculate the difference in milliseconds
+const timeDifference = currentDate - joinDate;
+
+// Convert the difference to days, months, and years
+const millisecondsInOneDay = 24 * 60 * 60 * 1000;
+const daysDifference = Math.floor(timeDifference / millisecondsInOneDay);
+const monthsDifference = Math.floor(daysDifference / 30.44); // Assuming an average month length
+const yearsDifference = Math.floor(monthsDifference / 12);
+
+// console.log('Experience: ', yearsDifference, 'years', monthsDifference % 12, 'months');
+    var durationContainer = document.getElementById('durationContainer');
+
+  
+      durationContainer.textContent = `${yearsDifference} year${yearsDifference !== 1 ? 's' : ''} and ${monthsDifference % 12} month${monthsDifference !== 1 ? 's' : ''}`;
+   
+
+}, 2000);
+
 }
