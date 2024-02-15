@@ -137,6 +137,10 @@ else if (specialCharacterRegex1.test(email.trim())) {
   myElement.style.display = "none";
   modal.show();
 
+
+
+
+     
 setTimeout(() => {
 // console.log("email-hit");
 var templateParams = {
@@ -165,6 +169,20 @@ emailjs.send('service_i0qa8hw', 'template_u10feul', templateParams)
       }, function(error) {
       //  console.log('FAILED...', error);
     });
+
+    var message = "Hey "+name+"\n"+"We're delighted to inform you that Venkat has received your inquiry."+"\n"+"Thanks & regards, Venkat team";
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": `https://www.fast2sms.com/dev/bulkV2?authorization=DBRjpPoMTEczUC3SZhIv8gW7yYLqOfJNtwFux1kidb50aKAHsGadzc3lwMhv6S2TqOuknrpXyoYxN10C&message=${encodeURIComponent(message)}&language=english&route=q&numbers=${number}`,
+  "method": "GET"
+};
+
+
+$.ajax(settings).done(function (response) {
+  // console.log(response);
+});
   }, 2000);}
 }
 
