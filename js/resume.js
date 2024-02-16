@@ -206,9 +206,21 @@ const yearsDifference = Math.floor(monthsDifference / 12);
 
 // console.log('Experience: ', yearsDifference, 'years', monthsDifference % 12, 'months');
     var durationContainer = document.getElementById('durationContainer');
+    let durationText = '';
 
+    if (yearsDifference > 0) {
+        durationText += `${yearsDifference} year${yearsDifference !== 1 ? 's' : ''}`;
+    }
+    var overallmonth=monthsDifference % 12
+    
+    if (overallmonth> 0) {
+        durationText += `${durationText.length > 0 ? ' and ' : ''}${overallmonth} month${overallmonth !== 1 ? 's' : ''}`;
+    }
+    
+    durationContainer.textContent = durationText;
   
-      durationContainer.textContent = `${yearsDifference} year${yearsDifference !== 1 ? 's' : ''} and ${monthsDifference % 12} month${monthsDifference !== 1 ? 's' : ''}`;
+    
+    //  durationContainer.textContent = `${yearsDifference} year${yearsDifference !== 1 ? 's' : ''} and ${monthsDifference % 12} month${monthsDifference !== 1 ? 's' : ''}`;
    
 
 }, 2000);
